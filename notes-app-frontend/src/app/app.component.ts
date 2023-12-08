@@ -1,17 +1,25 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {NotesComponent} from "./notes/notes.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  imports: [CommonModule, RouterOutlet, NotesComponent],
+  // templateUrl: './app.component.html',
+  template: `
+      <main>
+          <header class="brand-name">
+              <img class="brand-logo" src="data:image/png;base64,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" alt="logo" aria-hidden="true">
+          </header>
+          <section class="content">
+              <app-notes></app-notes>
+          </section>
+      </main>
+  `,
+  styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'Notes App';
-
+  title = 'notes-app-frontend';
 }

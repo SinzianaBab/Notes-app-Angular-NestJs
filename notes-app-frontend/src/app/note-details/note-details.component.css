@@ -1,0 +1,17 @@
+section {
+  background: lightpink;
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 400px;
+  margin: 20px auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.note-heading {
+  color: black;
+  margin-bottom: 10px;
+}
+
+p {
+  color: #333;
+}
