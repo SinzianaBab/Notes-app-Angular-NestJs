@@ -1,13 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
-<section>
-  <h2 class="note-heading">{{noteDetails.name}}</h2>
-  <p>{{noteDetails.message}}</p>
-</section>
-</body>
-</html>
+<div *ngIf="noteDetails">
+  <h2>{{noteDetails.name | uppercase}} Details</h2>
+<div><span>id: </span>{{noteDetails.id}}</div>
+  <div>
+    <label for="note-name">Note Name: </label>
+    <input id="note-name" [(ngModel)]="noteDetails.name" placeholder="name">
+  </div>
+  <div>
+    <label for="note-message">Note Name: </label>
+    <input id="note-message" [(ngModel)]="noteDetails.message" placeholder="message">
+  </div>
+</div>
