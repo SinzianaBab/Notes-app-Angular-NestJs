@@ -1,0 +1,10 @@
+<div class="wrapper">
+  <form class="form-note" (ngSubmit)="onSubmit()" #noteForm="ngForm">
+    <h2 class="form-note-heading">Add note</h2>
+    <input type="text" class="form-control" name="name" placeholder="Note Name" required="" autofocus=""
+           [(ngModel)]="model.name" #name="ngModel" />
+    <input type="text" class="form-control" name="message" placeholder="Note content" required=""
+           [(ngModel)]="model.message" #message="ngModel" />
+    <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!noteForm.valid">Submit</button>
+  </form>
+</div>
