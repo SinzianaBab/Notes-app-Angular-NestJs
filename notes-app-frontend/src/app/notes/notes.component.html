@@ -13,6 +13,8 @@
           <p class="card-message">{{note.message}}</p>
         </div>
       </button>
+      <button class="btn btn-lg btn-danger btn-block" type="submit"  [class.selected]="note === selectedNote"  (click)="onDelete(note.id)">Delete Note</button>
+
     </div>
   </div>
   <app-note-details [noteDetails]="selectedNote"></app-note-details>

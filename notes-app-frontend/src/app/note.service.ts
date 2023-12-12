@@ -31,6 +31,16 @@ export class NoteService {
     return this.http.post<NoteClass>(this.baseUrl, note).pipe(catchError(this.handleError));
   }
 
+  deleteNote(id: number): Observable<NoteDetails>{
+    const noteUrl = `${this.baseUrl}/${id}`;
+    return this.http.delete<NoteDetails>(noteUrl).pipe(catchError(this.handleError))
+  }
+
+  updateNote(id: number, note: NoteClass): Observable<NoteDetails>{
+    const noteUrl = `${this.baseUrl}/${id}`;
+    return this.http.put<NoteDetails>(noteUrl, note).pipe(catchError(this.handleError))
+  }
+
   private log(message: string) {
   this.messageService.add(`HeroService: ${message}`);
 }

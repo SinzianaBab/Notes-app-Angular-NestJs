@@ -14,13 +14,27 @@ export class NotesComponent implements OnInit {
   notes: NoteDetails[] = [];
   note: NoteDetails = <NoteDetails>{};
 
-  constructor(private noteService: NoteService) {
+  constructor(private noteService: NoteService,
+  ) {
   }
 
   ngOnInit(): void {
     this.getNotes('all');
     // this.postNote(this.note);
   }
+
+  onDelete(id: number): void {
+    this.noteService.deleteNote(id).subscribe({
+      next: res => {
+        console.log("Note successfully deleted: ", res);
+        location.reload();
+      },
+      error: err => {
+        console.error("Error deleting note:", err);
+      }
+    });
+  }
+
 
   onSelect(note: NoteDetails): void {
     this.selectedNote = note
