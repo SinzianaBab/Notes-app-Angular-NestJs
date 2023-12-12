@@ -41,6 +41,11 @@ export class NoteService {
     return this.http.put<NoteDetails>(noteUrl, note).pipe(catchError(this.handleError))
   }
 
+  searchByName(search: string):Observable<NoteDetails[]>{
+    const notesUrl = `${this.baseUrl}/findByName/${search}`;
+    return this.http.get<NoteDetails[]>(notesUrl).pipe(catchError(this.handleError))
+  }
+
   private log(message: string) {
   this.messageService.add(`HeroService: ${message}`);
 }

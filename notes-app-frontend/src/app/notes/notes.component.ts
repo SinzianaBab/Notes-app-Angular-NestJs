@@ -13,6 +13,7 @@ export class NotesComponent implements OnInit {
   selectedNote?: NoteDetails;
   notes: NoteDetails[] = [];
   note: NoteDetails = <NoteDetails>{};
+  search: string ="";
 
   constructor(private noteService: NoteService,
   ) {
@@ -35,7 +36,20 @@ export class NotesComponent implements OnInit {
     });
   }
 
+  searchByName(): void {
+    if (this.search) {
+      this.noteService.searchByName(this.search).subscribe(filteredNotes => {
+        this.notes = filteredNotes;
+        console.log(this.search);
+      });
+    } else {
+      this.getNotes('all');
+    }
+  }
 
+  resetSearch(): void{
+    location.reload();
+  }
   onSelect(note: NoteDetails): void {
     this.selectedNote = note
     // this.messageService.add(`Notes component: Selected note id = ${note.id}`)
@@ -46,10 +60,5 @@ export class NotesComponent implements OnInit {
     this.noteService.getNotes('all')
       .subscribe(notes => this.notes = notes);
   }
-
-  // postNote(note: NoteDetails):void{
-  //   this.noteService.postNote(note).subscribe(note=> this.notes.push(note))
-  // }
-
 
 }
